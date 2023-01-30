@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build":"docker build -t ahmadsherief/sample-node-ci:latest",
+    "docker:login":"docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD",
+    "docker:push":"docker push ahmadsherief/sample-node-ci:latest",
+    "ci:docker": "npm run docker:build && npm run run docker:push"
   },
   "keywords": [],
   "author": "",
