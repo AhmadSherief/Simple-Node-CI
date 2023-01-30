@@ -7,6 +7,10 @@ orbs:
 # Define the jobs we want to run for this project
 jobs:
   - docker/publish:
+  before_build:
+            - run:
+                command: echo "Did this before the build" && echo $CIRCLE_PROJECT_USERNAME
+                name: Test lifecycle hooks
       image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
 
 # Orchestrate our job run sequence
