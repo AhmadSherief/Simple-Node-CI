@@ -8,19 +8,11 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
-          after_build:
-            - run:
-                command: echo "Did this after the build"
-                name: Do this after the build
-          after_checkout:
-            - run:
-                command: echo "Did this after checkout"
-                name: Do this after checkout
           before_build:
             - run:
-                command: echo "Did this before the build"
+                command: echo "Did this before the build" && echo $CIRCLE_PROJECT_USERNAME && echo $DOCKERHUB_USERNAME
                 name: Do this before the build
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: $DOCKERHUB_USERNAME/$DOCKERHUB_REPONAME
 # Define the jobs we want to run for this project
 # jobs:
 #   - docker/publish:
