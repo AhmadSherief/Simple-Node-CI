@@ -9,7 +9,7 @@ jobs:
   - docker/publish:
       before_build:
         - run:
-            command: echo "Did this before the build" && echo $CIRCLE_PROJECT_USERNAME
+            command: echo "Did this before the build"
             name: Test lifecycle hooks
       image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
 
