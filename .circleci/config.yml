@@ -4,17 +4,34 @@ orbs:
   # node: circleci/node@5.1.0
   docker: circleci/docker@2.2.0
 
-# Define the jobs we want to run for this project
-jobs:
-  - docker/publish:
-      before_build:
-        - run:
-            command: echo "Did this before the build"
-            name: Test lifecycle hooks
-      image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-
-# Orchestrate our job run sequence
 workflows:
-  build_and_publish:
+  build-and-publish-docker-image:
     jobs:
-      - docker/publish
+      - docker/publish:
+          after_build:
+            - run:
+                command: echo "Did this after the build"
+                name: Do this after the build
+          after_checkout:
+            - run:
+                command: echo "Did this after checkout"
+                name: Do this after checkout
+          before_build:
+            - run:
+                command: echo "Did this before the build"
+                name: Do this before the build
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+# Define the jobs we want to run for this project
+# jobs:
+#   - docker/publish:
+#       before_build:
+#         - run:
+#             command: echo "Did this before the build"
+#             name: Test lifecycle hooks
+#       image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+
+# # Orchestrate our job run sequence
+# workflows:
+#   build_and_publish:
+#     jobs:
+#       - docker/publish
