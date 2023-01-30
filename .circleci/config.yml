@@ -13,6 +13,7 @@ workflows:
                 command: echo "Did this before the build" && echo $CIRCLE_PROJECT_USERNAME && echo $DOCKERHUB_USERNAME
                 name: Do this before the build
           image: $DOCKERHUB_USERNAME/$DOCKERHUB_REPONAME
+          tag: "v1.1"
 # Define the jobs we want to run for this project
 # jobs:
 #   - docker/publish:
