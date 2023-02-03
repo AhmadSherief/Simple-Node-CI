@@ -7,5 +7,5 @@ workflows:
   build-and-publish-docker-image:
     jobs:
       - docker/publish:
-          image: ahmadsherief/simple-node-ci
-          tag: "ahmadsherief/simple-node-ci:latest"
+          image: $DOCKERHUB_USERNAME/$DOCKERHUB_REPONAME
+          tag: "latest"
